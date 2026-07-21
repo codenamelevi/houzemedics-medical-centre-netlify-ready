@@ -20,7 +20,7 @@ function whatsappBookLink(serviceName) {
 
 const services = [
   { name: 'Weight Loss Clinic', description: 'Practical, doctor-led support to help you work toward sustainable health goals.' },
-  { name: 'IV Drip Therapy', description: 'Tailored IV wellness support in a calm, clinically guided lounge setting.', image: '/images/iv-drip-lounge-wide.jpg' },
+  { name: 'IV Drip Therapy', description: 'Tailored IV wellness support in a calm, clinically guided lounge setting.' },
   { name: 'Tele-Consultations', description: 'Convenient consultations from wherever you are when an in-person visit is not needed.' },
   { name: 'Chronic Disease Management', description: 'Ongoing care and monitoring for long-term health conditions.' },
   { name: 'Medical Assessments', description: 'Thorough health evaluations for your personal, work, or medical needs.' },
@@ -83,8 +83,59 @@ function Footer() { return <footer className="site-footer"><div className="foote
 function Layout({ children }) { const location = useLocation(); useEffect(() => { const [title, description] = pageMeta[location.pathname] || pageMeta['/']; document.title = title; document.querySelector('meta[name="description"]').setAttribute('content', description); window.scrollTo(0, 0); }, [location.pathname]); return <><Header/><main>{children}</main><Footer/></>; }
 function PageHero({ eyebrow, title, text }) { return <section className="page-hero"><div className="container"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1>{text && <p>{text}</p>}</div></section>; }
 
-function WhatsAppButton({ serviceName, className = 'button', children }) {
-  return <a className={className} href={whatsappBookLink(serviceName)} target="_blank" rel="noreferrer">{children || 'Book via WhatsApp'}</a>;
+function BookingModal({ service, onClose }) {
+  const [form, setForm] = useState({ name: '', phone: '', date: '', time: '', notes: '' });
+  const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!e.currentTarget.checkValidity()) { e.currentTarget.reportValidity(); return; }
+    const lines = [
+      `Hi Houzemedics, I'd like to book an appointment.`,
+      ``,
+      `Service: ${service.name}`,
+      `Name: ${form.name}`,
+      `Phone: ${form.phone}`,
+      form.date ? `Preferred date: ${form.date}` : null,
+      form.time ? `Preferred time: ${form.time}` : null,
+      form.notes ? `Notes: ${form.notes}` : null,
+    ].filter((l) => l !== null);
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+    window.open(url, '_blank', 'noreferrer');
+    onClose();
+  }
+
+  return (
+    <div className="modal-overlay" role="dialog" aria-modal="true" aria-label={`Book ${service.name}`} onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="modal-box">
+        <button className="modal-close" aria-label="Close" onClick={onClose}>×</button>
+        <p className="eyebrow">Book via WhatsApp</p>
+        <h2 className="modal-title">{service.name}</h2>
+        <p className="modal-sub">Fill in your details and we'll open WhatsApp with everything pre-filled — just hit send.</p>
+        <form onSubmit={handleSubmit} noValidate>
+          <label htmlFor="b-name">Full name *</label>
+          <input id="b-name" type="text" value={form.name} onChange={set('name')} required autoComplete="name" placeholder="e.g. Thabo Nkosi" />
+          <label htmlFor="b-phone">Phone number *</label>
+          <input id="b-phone" type="tel" value={form.phone} onChange={set('phone')} required autoComplete="tel" placeholder="e.g. 082 123 4567" />
+          <label htmlFor="b-date">Preferred date <span className="optional">(optional)</span></label>
+          <input id="b-date" type="date" value={form.date} onChange={set('date')} />
+          <label htmlFor="b-time">Preferred time <span className="optional">(optional)</span></label>
+          <input id="b-time" type="time" value={form.time} onChange={set('time')} />
+          <label htmlFor="b-notes">Notes <span className="optional">(optional)</span></label>
+          <textarea id="b-notes" rows="3" value={form.notes} onChange={set('notes')} placeholder="Anything else we should know?" />
+          <button className="button modal-submit" type="submit">Continue to WhatsApp →</button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+function WhatsAppButton({ serviceName, service, className = 'button', children }) {
+  const [open, setOpen] = useState(false);
+  return <>
+    <button className={className} onClick={() => setOpen(true)}>{children || 'Book via WhatsApp'}</button>
+    {open && <BookingModal service={service || { name: serviceName }} onClose={() => setOpen(false)} />}
+  </>;
 }
 
 function ServiceCard({ service, showBook = false }) {
@@ -93,7 +144,7 @@ function ServiceCard({ service, showBook = false }) {
     <h3>{service.name}</h3>
     <p>{service.description}</p>
     <span>Contact for pricing</span>
-    {showBook && <WhatsAppButton serviceName={service.name} className="button button-small service-book">Book via WhatsApp</WhatsAppButton>}
+    {showBook && <WhatsAppButton service={service} className="button button-small service-book">Book via WhatsApp</WhatsAppButton>}
   </article>;
 }
 
@@ -118,7 +169,7 @@ function Booking() {
       <span className="booking-number">{String(index + 1).padStart(2, '0')}</span>
       <h2>{service.name}</h2>
       <p>{service.description}</p>
-      <WhatsAppButton serviceName={service.name} className="button">Book via WhatsApp</WhatsAppButton>
+      <WhatsAppButton service={service} className="button">Book via WhatsApp</WhatsAppButton>
     </article>)}</div>
   </div></section></>;
 }
