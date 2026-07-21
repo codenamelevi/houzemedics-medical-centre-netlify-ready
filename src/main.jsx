@@ -88,12 +88,21 @@ function loadCalScript() {
 }
 function CalEmbed({ namespace, calLink, title }) {
   const elementId = `cal-${namespace}`;
-  useEffect(() => { loadCalScript().then(() => {
-    window.Cal('init', namespace, { origin: 'https://app.cal.com' });
-    window.Cal.config = window.Cal.config || {}; window.Cal.config.forwardQueryParams = true;
-    window.Cal.ns[namespace]('inline', { elementOrSelector: `#${elementId}`, config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' }, calLink });
-    window.Cal.ns[namespace]('ui', { hideEventTypeDetails: false, layout: 'month_view' });
-  }).catch(() => {}); }, [namespace, calLink, elementId]);
+  useEffect(() => {
+    const C = window; const A = 'https://app.cal.com/embed/embed.js'; const L = 'init';
+    const queue = (api, args) => { api.q.push(args); };
+    const documentRef = C.document;
+    C.Cal = C.Cal || function calLoader() {
+      const cal = C.Cal; const args = arguments;
+      if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; documentRef.head.appendChild(documentRef.createElement('script')).src = A; cal.loaded = true; }
+      if (args[0] === L) { const api = function apiQueue() { queue(api, arguments); }; const name = args[1]; api.q = api.q || []; if (typeof name === 'string') { cal.ns[name] = cal.ns[name] || api; queue(cal.ns[name], args); queue(cal, ['initNamespace', name]); } else queue(cal, args); return; }
+      queue(cal, args);
+    };
+    C.Cal('init', namespace, { origin: 'https://app.cal.com' });
+    C.Cal.config = C.Cal.config || {}; C.Cal.config.forwardQueryParams = true;
+    C.Cal.ns[namespace]('inline', { elementOrSelector: `#${elementId}`, config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' }, calLink });
+    C.Cal.ns[namespace]('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+  }, [namespace, calLink, elementId]);
   return <div id={elementId} className="cal-widget" aria-label={`${title} booking calendar`}></div>;
 }
 function Booking() { const [appointmentType, setAppointmentType] = useState('in-person'); const isInPerson = appointmentType === 'in-person'; return <><PageHero eyebrow="Book an appointment" title="Make time for your health" text="Choose the appointment type that works best for you."/><section className="section"><div className="container booking-layout"><div><div className="notice"><strong>Please note</strong><p>Sunday & Public Holiday appointments must be booked at least 1 day in advance. Same-day Sunday requests are Tele-Consultation only.</p></div><div className="appointment-types"><button type="button" className={isInPerson ? 'appointment-option selected' : 'appointment-option'} onClick={() => setAppointmentType('in-person')}><span>01</span><h2>In-Person Appointment</h2><p>Visit us at our Northwold medical centre for a consultation or service.</p></button><button type="button" className={!isInPerson ? 'appointment-option selected' : 'appointment-option'} onClick={() => setAppointmentType('tele')}><span>02</span><h2>Tele-Consultation</h2><p>Speak with a medical professional remotely from a convenient location.</p></button></div></div><div className="booking-embed"><h2>{isInPerson ? 'In-Person Appointment' : 'Tele-Consultation'}</h2><p>Select an available date and time below.</p>{isInPerson ? <CalEmbed namespace="in-person-appointment" calLink="levi-johnson-43zp2z/in-person-appointment" title="In-Person Appointment"/> : <CalEmbed namespace="tele-consultation" calLink="levi-johnson-43zp2z/tele-consultation" title="Tele-Consultation"/>}</div></div></section></>; }
