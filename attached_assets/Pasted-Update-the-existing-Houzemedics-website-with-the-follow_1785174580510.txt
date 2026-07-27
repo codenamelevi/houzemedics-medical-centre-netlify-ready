@@ -1,0 +1,96 @@
+Update the existing Houzemedics website with the following new/updated content. Keep the current design system (navy + red branding, logo, layout structure) — this is a content update, not a redesign.
+
+Global updates
+Update the business name/tagline in the header and footer to: "Houzemedics Medical Centre & IV Lounge" with tagline "Your Path to Optimal Care"
+Update the hero subtext to include this quote: "Professional healthcare that comes to you, cares for you, and empowers you to live healthier."
+Update primary CTA buttons site-wide to three options where relevant: "Book an Appointment", "WhatsApp Us", "Book a Teleconsultation"
+Update the address to: Drysdale Road & Elnita Avenue, Northwold Junction Shopping Centre, Randburg
+Update phone/WhatsApp to: 083 406 9233
+Add email: Houzemedics@gmail.com
+Update operating hours to reflect TWO separate schedules (replace the old single hours block):
+Teleconsultations: Monday–Friday, 10:00–13:00
+In-person Consultations: Monday–Friday, 14:30–20:00
+(Keep existing Saturday/Sunday hours as previously set unless client specifies otherwise — flag this as a question for the client since the new copy only gives Mon–Fri hours)
+Homepage
+Add a "Why Choose Houzemedics?" checklist section with these 8 items: Family Medical Care, Teleconsultations, Home Visits, IV Drip Lounge, Medical Aesthetics, Weight Loss Programmes, Corporate Wellness, Chronic Disease Management
+Add an "Our Promise" section with this copy: "We believe quality healthcare should be accessible, compassionate, and focused on helping every patient achieve optimal health and wellness. Our goal is to make every patient feel calm, relaxed, and at home from the moment they visit us."
+Add a second "Why Choose Houzemedics?" section further down (different from the checklist above) listing: Experienced Medical Doctor, Comprehensive Medical Services, Home Visits, Telemedicine, Same-Day Appointments (subject to availability), Holistic Wellness Approach, Modern Medical Equipment, Convenient Online Booking, All Medical Aids Accepted
+New "About the Doctor" section (add to About page)
+
+Add a full doctor bio section:
+
+Dr TJ Tite MBChB | General Practitioner MP 0982210 | PR 1236814
+
+Bio text: "Dr TJ Tite is a South African medical doctor with international training and a passion for delivering accessible, patient-centred healthcare. He studied medicine at the Universidad de Ciencias Médicas de La Habana in Cuba before completing his medical training at Sefako Makgatho Health Sciences University (MEDUNSA). He completed his internship at Chris Hani Baragwanath Academic Hospital and his community service at Steve Biko Academic Hospital in the Emergency Department, gaining extensive experience in emergency medicine and the management of acute and chronic medical conditions. Today, Dr Tite combines evidence-based medicine with a holistic approach to wellness through family medicine, chronic disease management, medical aesthetics, IV nutritional therapy, and weight management."
+
+Qualifications list: MBChB, Basic Life Support (BLS), Advanced Cardiac Life Support (ACLS), Paediatric Advanced Life Support (PALS), Point-of-Care Ultrasound (POCUS), Dispensing Licence, Botox & Dermal Fillers Certification
+
+Languages list: English, isiZulu, Sesotho, Español
+
+Services page — replace/expand existing service cards with full descriptions
+
+Family Medicine — Comprehensive healthcare for the whole family. Includes: Acute illnesses, Chronic disease management, Medical reports, Repeat prescriptions, Health screening, Preventative care
+
+Teleconsultations — Consult your doctor from anywhere in South Africa. Ideal for: Repeat prescriptions, Follow-up appointments, Chronic disease reviews, Minor illnesses, Medical advice
+
+Home Visits — Receive professional medical care in the comfort of your home. Suitable for: Elderly patients, Busy professionals, Patients with mobility challenges, Families, Palliative care support
+
+Weight Loss Programme — A medically supervised programme designed to support sustainable weight loss. Includes: Doctor consultations, Personalised treatment plans, GLP-1 medications, Duromine therapy, Nutrition guidance, Exercise planning, Progress monitoring
+
+Medical Aesthetics — Enhance your natural beauty with doctor-performed treatments. Services include: Botox, Dermal Fillers
+
+Men's Health — Comprehensive men's healthcare including: General health assessments, Hormonal evaluation, Sexual health, Preventative screening, Lifestyle medicine
+
+Women's Health — Family planning, Contraception, Wellness checks, Preventative healthcare
+
+Corporate Wellness — Bring healthcare to your workplace. Services include: Wellness days, Health screening, Blood pressure checks, Blood glucose testing, BMI assessments, IV therapy, Health talks
+
+(Remove or fold in the old generic "Chronic Disease Management" and "Medical Assessments" cards into Family Medicine above, since the new copy folds these in)
+
+New "IV Drip Lounge" page or dedicated section — build this as its own detailed page
+
+Header: "IV Drip Lounge — Restore. Rehydrate. Rejuvenate."
+
+Build a card for each of these 6 IV therapies, each with: title, one-line tagline, benefits (bulleted), "Best for" list (bulleted), and duration:
+
+Glow Drip — "Radiance from Within" — Designed to promote healthier-looking skin, hair, and nails while supporting overall cellular health.
+Benefits: Promotes brighter, healthier-looking skin; Supports collagen production; Helps reduce oxidative stress; Supports healthy hair and nail growth; Enhances hydration; May improve skin recovery and complexion
+Best for: Dull skin, Frequent travel, Busy professionals, Beauty maintenance, Pre-event skin preparation
+Duration: 15–30 minutes
+Immune Booster Drip — "Strengthen Your Natural Defences" — Supports your immune system during periods of illness, stress, travel, or seasonal changes.
+Benefits: Supports immune function; Helps combat fatigue; Promotes recovery after illness; Assists in reducing oxidative stress; Helps maintain hydration; Supports overall wellness
+Best for: Frequent infections, Flu season, Busy lifestyles, Recovery from illness, Travellers
+Duration: 15–30 minutes
+Detox Drip — "Refresh. Rehydrate. Restore." — Supports hydration and your body's natural metabolic and recovery processes.
+Benefits: Replenishes fluids; Supports normal liver function; Helps relieve fatigue; Promotes hydration; Supports overall wellbeing; Helps you feel refreshed
+Best for: Fatigue, Dehydration, Busy lifestyles, Recovery after strenuous activity
+Duration: 15–30 minutes
+Revitalisation & Hangover Recovery Drip — "Recover Faster" — Designed to rehydrate and replenish fluids and nutrients after alcohol consumption or dehydration.
+Benefits: Rapid rehydration; Supports electrolyte replacement; Helps relieve fatigue; May reduce nausea associated with hangovers; Supports headache recovery related to dehydration; Promotes quicker recovery
+Best for: Hangovers, Dehydration, Long travel, Exhaustion, Heat exposure
+Duration: 15–30 minutes
+Brain Booster Drip — "Support Focus & Mental Performance" — Formulated to support mental clarity, hydration, and energy metabolism.
+Benefits: Supports concentration; Helps reduce mental fatigue; Supports cognitive performance; Assists energy production; Promotes hydration; Supports productivity
+Best for: Students, Professionals, Exam preparation, Long working hours, Mental fatigue
+Duration: 15–30 minutes
+Iron Infusion — "Restore Iron Levels" — Administered under medical supervision for patients with confirmed iron deficiency when clinically appropriate.
+Benefits: Helps restore iron stores; Supports healthy red blood cell production; May improve energy levels in iron deficiency; Helps reduce symptoms such as fatigue related to iron deficiency; Supports oxygen transport throughout the body
+Suitable for: Confirmed iron deficiency, Iron deficiency anaemia (where appropriate), Patients unable to tolerate oral iron
+Note: "Iron infusions require a medical assessment and may require blood test results before treatment."
+Duration: Approximately 1 hour
+
+Add an IV Drip Lounge pricing table below the cards:
+
+200 ml IV Drip – R750
+1 L IV Drip – R800
+Iron drip – R900 (low dose) / R1200 (high dose)
+Rehydration – R200 (200ml) / R250 (1 litre)
+New FAQ section — add to homepage or its own page
+
+Q: Do you accept medical aid? — A: Yes. We accept patients from all major South African medical aids. Q: Can I book online? — A: Yes. You can book online or via WhatsApp. Q: Do you offer home visits? — A: Yes. Home visits are available by appointment. Q: Do you offer teleconsultations? — A: Yes. Consult your doctor securely from anywhere in South Africa. Q: How long does an IV drip take? — A: Most IV drips take between 15 and 30 minutes, while iron infusions take approximately one hour.
+
+Implementation notes
+Keep all existing pages/routes (Home, About, Services, Gallery, Booking, Contact) — add a new "IV Drip Lounge" page/route and an "FAQ" section rather than removing anything
+Update nav menu to include the new IV Drip Lounge page
+Keep pricing displayed for IV Drip Lounge (client provided real numbers here) but leave "Contact for pricing" for all other services unless told otherwise
+Flag to client: confirm Saturday/Sunday hours still apply as previously stated, since new copy only specifies Monday–Friday hours for both Teleconsultation and In-person slots
