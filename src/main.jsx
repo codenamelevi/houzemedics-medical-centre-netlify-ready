@@ -223,7 +223,7 @@ function BookingsDropdown({ onClose }) {
   return (
     <div className="bookings-dropdown" ref={ref}>
       <button className="button button-small bookings-btn" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-haspopup="true">
-        📅 BOOKINGS
+        BOOKINGS
       </button>
       {open && (
         <div className="bookings-menu" role="menu">
@@ -266,7 +266,6 @@ function Header() {
           ))}
           <div className="nav-ctas">
             <BookingsDropdown onClose={() => setOpen(false)} />
-            <a className="button button-small button-outline script-renewal-btn" href="https://forms.gle/om1EtbaobKtTBUDM6" target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Script Renewal</a>
           </div>
         </nav>
       </div>
@@ -400,7 +399,7 @@ function ServiceCard({ service, showBook = false, plain = false }) {
     <article className={`service-card${plain ? ' service-card-plain' : ''}`}>
       {service.image
         ? <img className="service-photo" src={service.image} alt="" loading="lazy" />
-        : <div className="service-icon" aria-hidden="true">+</div>}
+        : (!plain && <div className="service-icon" aria-hidden="true">+</div>)}
       <h3>{service.name}</h3>
       <p>{service.description}</p>
       {service.includes && (
@@ -473,7 +472,8 @@ function Home() {
             <h1>Your Path to <em>Optimal Care</em></h1>
             <p className="hero-copy">Professional healthcare that comes to you, cares for you, and empowers you to live healthier.</p>
             <div className="button-row">
-              <Link className="button" to="/booking">Book an Appointment</Link>
+              <BookingsDropdown />
+              <a className="button button-outline script-renewal-btn" href="https://forms.gle/om1EtbaobKtTBUDM6" target="_blank" rel="noreferrer">Script Renewal</a>
             </div>
           </div>
           <div className="hero-photo">
