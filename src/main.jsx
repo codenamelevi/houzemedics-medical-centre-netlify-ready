@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Link, NavLink, useLocation } from 'react-router-dom';
 import './styles.css';
@@ -26,12 +26,14 @@ const services = [
     name: 'Family Medicine',
     description: 'Comprehensive healthcare for the whole family.',
     includes: ['Acute illnesses', 'Chronic disease management', 'Medical reports', 'Repeat prescriptions', 'Health screening', 'Preventative care'],
+    homeShow: true,
   },
   {
     name: 'Teleconsultations',
     description: 'Consult your doctor from anywhere in South Africa.',
     includes: ['Repeat prescriptions', 'Follow-up appointments', 'Chronic disease reviews', 'Minor illnesses', 'Medical advice'],
     includesLabel: 'Ideal for',
+    homeShow: true,
   },
   {
     name: 'Home Visits',
@@ -43,28 +45,36 @@ const services = [
     name: 'Weight Loss Programme',
     description: 'A medically supervised programme designed to support sustainable weight loss.',
     includes: ['Doctor consultations', 'Personalised treatment plans', 'GLP-1 medications', 'Duromine therapy', 'Nutrition guidance', 'Exercise planning', 'Progress monitoring'],
+    homeShow: true,
   },
   {
     name: 'Medical Aesthetics',
     description: 'Enhance your natural beauty with doctor-performed treatments.',
     includes: ['Botox', 'Dermal Fillers'],
     includesLabel: 'Services include',
+    homeShow: true,
   },
   {
-    name: "Men's Health",
-    description: 'Comprehensive men\'s healthcare.',
-    includes: ['General health assessments', 'Hormonal evaluation', 'Sexual health', 'Preventative screening', 'Lifestyle medicine'],
-  },
-  {
-    name: "Women's Health",
-    description: 'Personalised care at every stage of life.',
-    includes: ['Family planning', 'Contraception', 'Wellness checks', 'Preventative healthcare'],
+    name: "Women's & Men's Health",
+    description: "Comprehensive healthcare tailored to the unique needs of both women and men, with a focus on prevention, wellness, and long-term health.",
+    includes: [
+      'General health assessments',
+      'Preventative health screenings',
+      'Hormonal evaluation and management',
+      'Sexual and reproductive health',
+      'Contraceptive counselling and family planning',
+      'Lifestyle and preventative medicine',
+      'Chronic disease screening and management',
+      'Health education and wellness counselling',
+    ],
+    homeShow: true,
   },
   {
     name: 'Corporate Wellness',
     description: 'Bring healthcare to your workplace.',
     includes: ['Wellness days', 'Health screening', 'Blood pressure checks', 'Blood glucose testing', 'BMI assessments', 'IV therapy', 'Health talks'],
     includesLabel: 'Services include',
+    homeShow: true,
   },
 ];
 
@@ -190,7 +200,7 @@ const galleryImages = [
 function Brand({ compact = false }) {
   return (
     <Link className="brand" to="/" aria-label="Houzemedics Medical Centre home">
-      <img className="brand-logo" src="/images/houzemedics-logo.jpeg" alt="Houzemedics Medical Centre logo — house, stethoscope and red cross" />
+      <img className="brand-logo" src="/images/houzemedics-logo-new.jpeg" alt="Houzemedics Medical Centre logo" />
       {!compact && (
         <span>
           <strong>Houzemedics</strong>
@@ -198,6 +208,36 @@ function Brand({ compact = false }) {
         </span>
       )}
     </Link>
+  );
+}
+
+function BookingsDropdown({ onClose }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    function handler(e) { if (ref.current && !ref.current.contains(e.target)) setOpen(false); }
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+  function close() { setOpen(false); if (onClose) onClose(); }
+  return (
+    <div className="bookings-dropdown" ref={ref}>
+      <button className="button button-small bookings-btn" onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-haspopup="true">
+        📅 BOOKINGS
+      </button>
+      {open && (
+        <div className="bookings-menu" role="menu">
+          <a className="bookings-menu-item" href={clinic.whatsapp} target="_blank" rel="noreferrer" onClick={close} role="menuitem">
+            <span className="bmi-icon">💬</span>
+            <span><strong>WhatsApp Us</strong><small>Chat &amp; book via WhatsApp</small></span>
+          </a>
+          <a className="bookings-menu-item" href={whatsappBookLink('Teleconsultation')} target="_blank" rel="noreferrer" onClick={close} role="menuitem">
+            <span className="bmi-icon">📱</span>
+            <span><strong>Book a Teleconsultation</strong><small>Remote appointment from anywhere</small></span>
+          </a>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -224,7 +264,10 @@ function Header() {
           {links.map(([to, label]) => (
             <NavLink key={to} to={to} end={to === '/'} onClick={() => setOpen(false)}>{label}</NavLink>
           ))}
-          <Link className="button button-small" to="/booking" onClick={() => setOpen(false)}>Book Now</Link>
+          <div className="nav-ctas">
+            <BookingsDropdown onClose={() => setOpen(false)} />
+            <a className="button button-small button-outline script-renewal-btn" href="https://forms.gle/om1EtbaobKtTBUDM6" target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Script Renewal</a>
+          </div>
         </nav>
       </div>
     </header>
@@ -352,9 +395,9 @@ function WhatsAppButton({ serviceName, service, className = 'button', children }
 
 // ── Service card ─────────────────────────────────────────────────────────────
 
-function ServiceCard({ service, showBook = false }) {
+function ServiceCard({ service, showBook = false, plain = false }) {
   return (
-    <article className="service-card">
+    <article className={`service-card${plain ? ' service-card-plain' : ''}`}>
       {service.image
         ? <img className="service-photo" src={service.image} alt="" loading="lazy" />
         : <div className="service-icon" aria-hidden="true">+</div>}
@@ -431,8 +474,6 @@ function Home() {
             <p className="hero-copy">Professional healthcare that comes to you, cares for you, and empowers you to live healthier.</p>
             <div className="button-row">
               <Link className="button" to="/booking">Book an Appointment</Link>
-              <a className="button button-outline" href={clinic.whatsapp} target="_blank" rel="noreferrer">WhatsApp Us</a>
-              <a className="button button-outline" href={whatsappBookLink('Teleconsultation')}>Book a Teleconsultation</a>
             </div>
           </div>
           <div className="hero-photo">
@@ -452,25 +493,8 @@ function Home() {
             <Link className="text-link" to="/services">View all services <span>→</span></Link>
           </div>
           <div className="services-grid preview-grid">
-            {services.slice(0, 6).map((service) => <ServiceCard key={service.name} service={service} />)}
+            {services.filter((s) => s.homeShow).map((service) => <ServiceCard key={service.name} service={service} plain />)}
           </div>
-        </div>
-      </section>
-
-      {/* Why Choose Houzemedics — checklist */}
-      <section className="section why-choose-section">
-        <div className="container">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Why choose us</p>
-              <h2>Why Choose Houzemedics?</h2>
-            </div>
-          </div>
-          <ul className="why-checklist">
-            {whyChooseItems.map((item) => (
-              <li key={item}><span className="check-icon" aria-hidden="true">✓</span>{item}</li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -550,7 +574,7 @@ function About() {
           <div className="content">
             <h2>Health care with a human touch</h2>
             <p>Houzemedics Medical Centre provides professional primary health care in a welcoming setting. We believe good health starts with being heard, understood, and supported.</p>
-            <p>Led by <strong>Dr TJ Tite</strong>, General Practitioner (PR: 1236814), our clinic brings together everyday GP care, wellness services, and practical treatment options to help patients make confident decisions about their health.</p>
+            <p>Led by <strong>Dr TJ Tite</strong>, General Practitioner, our clinic brings together everyday GP care, wellness services, and practical treatment options to help patients make confident decisions about their health.</p>
             <p>Open till late on weekdays — book in person, by phone, or through WhatsApp at {clinic.phone}.</p>
             <WhatsAppButton serviceName="General consultation" className="button">Book via WhatsApp</WhatsAppButton>
           </div>
@@ -562,7 +586,7 @@ function About() {
         <div className="container">
           <p className="eyebrow">Meet the doctor</p>
           <h2>Dr TJ Tite</h2>
-          <p className="doctor-credentials">MBChB &nbsp;|&nbsp; General Practitioner &nbsp;|&nbsp; MP 0982210 &nbsp;|&nbsp; PR 1236814</p>
+          <p className="doctor-credentials">MBChB &nbsp;|&nbsp; General Practitioner</p>
           <div className="doctor-bio-grid">
             <div className="doctor-bio-text">
               <p>Dr TJ Tite is a South African medical doctor with international training and a passion for delivering accessible, patient-centred healthcare. He studied medicine at the Universidad de Ciencias Médicas de La Habana in Cuba before completing his medical training at Sefako Makgatho Health Sciences University (MEDUNSA).</p>
