@@ -375,7 +375,7 @@ function Footer() {
         <div>
           <h2>Hours</h2>
           <p>
-            <strong>Teleconsultations</strong><br />Sunday and Public Holidays: appointments only
+            <strong>Teleconsultations</strong><br />Mon–Fri: 10:00–13:00<br />Sunday &amp; Public Holidays: appointments only
           </p>
           <p>
             <strong>In-person</strong><br />Mon–Fri: 14:30–20:00<br />Sat: 09:00–16:00<br />Sun & public holidays: by appointment
@@ -612,7 +612,8 @@ function Home() {
           </div>
           <div>
             <strong>Teleconsultations</strong>
-            <span>Sunday and Public Holidays: appointments only</span>
+            <span>Mon–Fri: 10:00–13:00</span>
+            <span>Sunday &amp; Public Holidays: appointments only</span>
           </div>
           <div>
             <strong>In-person</strong>
@@ -771,21 +772,42 @@ function IVDripLounge() {
       <section className="section iv-pricing-section">
         <div className="container">
           <p className="eyebrow">Transparent pricing</p>
-          <h2>IV Drip Pricing</h2>
-          <table className="iv-pricing-table">
-            <thead>
-              <tr><th>Treatment</th><th>Price</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>200 ml IV Drip</td><td>R750</td></tr>
-              <tr><td>1 L IV Drip</td><td>R800</td></tr>
-              <tr><td>Iron Drip — Low dose</td><td>R900</td></tr>
-              <tr><td>Iron Drip — High dose</td><td>R1 200</td></tr>
-              <tr><td>Rehydration — 200 ml</td><td>R200</td></tr>
-              <tr><td>Rehydration — 1 litre</td><td>R250</td></tr>
-            </tbody>
-          </table>
-          <p className="iv-pricing-note">All IV drip sessions are clinically supervised. Iron infusions require a prior medical assessment.</p>
+          <h2>Pricing</h2>
+          <div className="iv-pricing-grid">
+            <div>
+              <h3 className="iv-pricing-subtitle">IV Drip Pricing</h3>
+              <table className="iv-pricing-table">
+                <thead>
+                  <tr><th>Treatment</th><th>Price</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Rehydration Therapy – 200 ml</td><td>R200</td></tr>
+                  <tr><td>Rehydration Therapy – 1 L</td><td>R250</td></tr>
+                  <tr><td>Standard Wellness IV (200 ml)</td><td>R750</td></tr>
+                  <tr><td>Premium Wellness IV (1 L)</td><td>R800</td></tr>
+                  <tr><td>Iron Infusion – Low Dose</td><td>R900</td></tr>
+                  <tr><td>Iron Infusion – High Dose</td><td>R1 200</td></tr>
+                </tbody>
+              </table>
+              <p className="iv-pricing-note">All IV drip sessions are clinically supervised. Iron infusions require a prior medical assessment.</p>
+            </div>
+            <div>
+              <h3 className="iv-pricing-subtitle">Intramuscular (IM) Injections</h3>
+              <p className="iv-pricing-note" style={{marginBottom:'12px'}}>Quick, effective injections administered by a qualified medical doctor to support wellness, recovery, and symptom relief.</p>
+              <table className="iv-pricing-table">
+                <thead>
+                  <tr><th>Injection</th><th>Price</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Vitamin B-Complex</td><td>R150</td></tr>
+                  <tr><td>Vitamin B12</td><td>R150</td></tr>
+                  <tr><td>Thiamine (Vitamin B1)</td><td>R100</td></tr>
+                  <tr><td>Voltaren Injection</td><td>R150</td></tr>
+                  <tr><td>Tramadol Injection</td><td>R150</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
           <div className="center-cta">
             <WhatsAppButton serviceName="IV Drip Therapy" className="button">Book your IV drip</WhatsAppButton>
           </div>
@@ -865,7 +887,8 @@ function Contact() {
             <h3>Clinic hours</h3>
             <p>
               <strong>Teleconsultations</strong><br />
-              Sunday and Public Holidays: appointments only
+              Monday–Friday: 10:00–13:00<br />
+              Sunday &amp; Public Holidays: appointments only
             </p>
             <p>
               <strong>In-person Consultations</strong><br />
