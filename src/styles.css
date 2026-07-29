@@ -7,6 +7,11 @@
 /* Homepage service cards — no border */
 .service-card-plain{border:none;background:transparent;padding:16px 0 10px}.service-card-plain .service-icon{background:var(--pale)}
 
+/* Service SVG icon */
+.service-svg-icon{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--pale);color:var(--red);flex-shrink:0;margin-bottom:4px}
+.service-svg-icon svg{width:32px;height:32px}
+.service-card-plain .service-svg-icon{background:var(--pale)}
+
 /* Service includes list */
 .service-includes{margin:0 0 12px;padding:0 0 0 16px;color:var(--muted);font-size:.85rem;line-height:1.7}
 .service-includes-group{margin-bottom:10px}

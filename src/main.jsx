@@ -21,15 +21,86 @@ function whatsappBookLink(serviceName) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 }
 
+const SERVICE_ICONS = {
+  family: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="24" cy="11" r="5"/>
+      <path d="M14 38v-4a10 10 0 0 1 20 0v4"/>
+      <circle cx="10" cy="17" r="4"/>
+      <path d="M2 38v-3a8 8 0 0 1 12-6.9"/>
+      <circle cx="38" cy="17" r="4"/>
+      <path d="M46 38v-3a8 8 0 0 0-12-6.9"/>
+    </svg>
+  ),
+  teleconsult: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="4" y="6" width="40" height="28" rx="3"/>
+      <path d="M16 42h16M24 34v8"/>
+      <circle cx="24" cy="16" r="5"/>
+      <path d="M15 28a9 9 0 0 1 18 0"/>
+    </svg>
+  ),
+  homeVisit: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4 22L24 5l20 17"/>
+      <path d="M8 18.5V42h32V18.5"/>
+      <rect x="18" y="28" width="12" height="14"/>
+      <path d="M24 19v8M20 23h8"/>
+    </svg>
+  ),
+  weightLoss: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M10 36a14 14 0 0 1 28 0"/>
+      <line x1="24" y1="22" x2="24" y2="36"/>
+      <circle cx="24" cy="19" r="3"/>
+      <line x1="4" y1="36" x2="44" y2="36"/>
+      <line x1="24" y1="8" x2="24" y2="13"/>
+      <line x1="9" y1="13" x2="13" y2="17"/>
+      <line x1="39" y1="13" x2="35" y2="17"/>
+    </svg>
+  ),
+  aesthetic: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="24" cy="24" r="11"/>
+      <path d="M24 13V9M13 24H9M24 35v4M35 24h4"/>
+      <path d="M16.9 16.9l-2.8-2.8M31.1 16.9l2.8-2.8"/>
+      <circle cx="20" cy="22" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M20 27c1.1 1.5 2.8 2.5 4 2.5s2.9-1 4-2.5"/>
+    </svg>
+  ),
+  womensHealth: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="16" cy="18" r="8"/>
+      <line x1="16" y1="26" x2="16" y2="40"/>
+      <line x1="11" y1="34" x2="21" y2="34"/>
+      <circle cx="32" cy="16" r="8"/>
+      <line x1="38" y1="10" x2="44" y2="4"/>
+      <line x1="44" y1="4" x2="44" y2="10"/>
+      <line x1="38" y1="4" x2="44" y2="4"/>
+    </svg>
+  ),
+  corporate: (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="6" y="18" width="36" height="26" rx="2"/>
+      <path d="M16 18v-4a8 8 0 0 1 16 0v4"/>
+      <line x1="24" y1="28" x2="24" y2="34"/>
+      <line x1="21" y1="31" x2="27" y2="31"/>
+      <path d="M6 30h36"/>
+    </svg>
+  ),
+};
+
 const services = [
   {
     name: 'Family Medicine',
+    iconKey: 'family',
     description: 'Comprehensive healthcare for the whole family.',
     includes: ['Acute illnesses', 'Chronic disease management', 'Medical reports', 'Repeat prescriptions', 'Health screening', 'Preventative care'],
     homeShow: true,
   },
   {
     name: 'Teleconsultations',
+    iconKey: 'teleconsult',
     description: 'Consult your doctor from anywhere in South Africa.',
     includes: ['Repeat prescriptions', 'Follow-up appointments', 'Chronic disease reviews', 'Minor illnesses', 'Medical advice'],
     includesLabel: 'Ideal for',
@@ -37,18 +108,21 @@ const services = [
   },
   {
     name: 'Home Visits',
+    iconKey: 'homeVisit',
     description: 'Receive professional medical care in the comfort of your home.',
     includes: ['Elderly patients', 'Busy professionals', 'Patients with mobility challenges', 'Families', 'Palliative care support'],
     includesLabel: 'Suitable for',
   },
   {
     name: 'Weight Loss Programme',
+    iconKey: 'weightLoss',
     description: 'A medically supervised programme designed to support sustainable weight loss.',
     includes: ['Doctor consultations', 'Personalised treatment plans', 'GLP-1 medications', 'Duromine therapy', 'Nutrition guidance', 'Exercise planning', 'Progress monitoring'],
     homeShow: true,
   },
   {
     name: 'Medical Aesthetics',
+    iconKey: 'aesthetic',
     description: 'Enhance your natural beauty with doctor-performed treatments.',
     includesGroups: [
       {
@@ -64,6 +138,7 @@ const services = [
   },
   {
     name: "Women's & Men's Health",
+    iconKey: 'womensHealth',
     description: "Comprehensive healthcare tailored to the unique needs of both women and men, with a focus on prevention, wellness, and long-term health.",
     includes: [
       'General health assessments',
@@ -79,6 +154,7 @@ const services = [
   },
   {
     name: 'Corporate Wellness',
+    iconKey: 'corporate',
     description: 'Bring healthcare to your workplace.',
     includes: ['Wellness days', 'Health screening', 'Blood pressure checks', 'Blood glucose testing', 'BMI assessments', 'IV therapy', 'Health talks'],
     includesLabel: 'Services include',
@@ -403,11 +479,14 @@ function WhatsAppButton({ serviceName, service, className = 'button', children }
 // ── Service card ─────────────────────────────────────────────────────────────
 
 function ServiceCard({ service, showBook = false, plain = false }) {
+  const icon = service.iconKey ? SERVICE_ICONS[service.iconKey] : null;
   return (
     <article className={`service-card${plain ? ' service-card-plain' : ''}`}>
       {service.image
         ? <img className="service-photo" src={service.image} alt="" loading="lazy" />
-        : (!plain && <div className="service-icon" aria-hidden="true">+</div>)}
+        : icon
+          ? <div className="service-svg-icon" aria-hidden="true">{icon}</div>
+          : (!plain && <div className="service-icon" aria-hidden="true">+</div>)}
       <h3>{service.name}</h3>
       <p>{service.description}</p>
       {service.includes && (
