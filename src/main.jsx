@@ -299,7 +299,7 @@ function Footer() {
         <div>
           <h2>Hours</h2>
           <p>
-            <strong>Teleconsultations</strong><br />Mon–Fri: 10:00–13:00<br />Sunday & Public Holidays: appointments only
+            <strong>Teleconsultations</strong><br />Sunday and Public Holidays: appointments only
           </p>
           <p>
             <strong>In-person</strong><br />Mon–Fri: 14:30–20:00<br />Sat: 09:00–16:00<br />Sun & public holidays: by appointment
@@ -533,7 +533,7 @@ function Home() {
           </div>
           <div>
             <strong>Teleconsultations</strong>
-            <span>Mon–Fri: 10:00–13:00</span>
+            <span>Sunday and Public Holidays: appointments only</span>
           </div>
           <div>
             <strong>In-person</strong>
@@ -786,8 +786,7 @@ function Contact() {
             <h3>Clinic hours</h3>
             <p>
               <strong>Teleconsultations</strong><br />
-              Monday–Friday: 10:00–13:00<br />
-              Sunday &amp; Public Holidays: appointments only
+              Sunday and Public Holidays: appointments only
             </p>
             <p>
               <strong>In-person Consultations</strong><br />
