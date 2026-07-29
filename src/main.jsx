@@ -50,8 +50,16 @@ const services = [
   {
     name: 'Medical Aesthetics',
     description: 'Enhance your natural beauty with doctor-performed treatments.',
-    includes: ['Botox', 'Dermal Fillers'],
-    includesLabel: 'Services include',
+    includesGroups: [
+      {
+        label: 'Aesthetic Botulinum treatments',
+        items: ['Crows feet (Smile Lines)', 'Glabella (Frown Lines)', 'Frontalis (Forehead Lines)'],
+      },
+      {
+        label: 'Medical Botulinum treatments',
+        items: ['Chronic Headaches', 'Bruxism (jaw clenching)', 'Hyperhydrosis (excessive sweating)'],
+      },
+    ],
     homeShow: true,
   },
   {
@@ -291,7 +299,7 @@ function Footer() {
         <div>
           <h2>Hours</h2>
           <p>
-            <strong>Teleconsultations</strong><br />Mon–Fri: 10:00–13:00
+            <strong>Teleconsultations</strong><br />Mon–Fri: 10:00–13:00<br />Sunday & Public Holidays: appointments only
           </p>
           <p>
             <strong>In-person</strong><br />Mon–Fri: 14:30–20:00<br />Sat: 09:00–16:00<br />Sun & public holidays: by appointment
@@ -407,7 +415,14 @@ function ServiceCard({ service, showBook = false, plain = false }) {
           {service.includes.map((item) => <li key={item}>{item}</li>)}
         </ul>
       )}
-      <span>Contact for pricing</span>
+      {service.includesGroups && service.includesGroups.map((group) => (
+        <div key={group.label} className="service-includes-group">
+          <strong className="service-includes-group-label">{group.label}:</strong>
+          <ul className="service-includes">
+            {group.items.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </div>
+      ))}
       {showBook && (
         <WhatsAppButton service={service} className="button button-small service-book">Book via WhatsApp</WhatsAppButton>
       )}
@@ -771,7 +786,8 @@ function Contact() {
             <h3>Clinic hours</h3>
             <p>
               <strong>Teleconsultations</strong><br />
-              Monday–Friday: 10:00–13:00
+              Monday–Friday: 10:00–13:00<br />
+              Sunday &amp; Public Holidays: appointments only
             </p>
             <p>
               <strong>In-person Consultations</strong><br />
